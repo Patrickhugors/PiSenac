@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<title>Minha Página Inicial</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background-image: url('background.jpg');
+			background-size: cover;
+			font-family: Arial, sans-serif;
+			color: #fff;
+            background-image: url('/src/assets/images/powerlines.jpeg');
+		}
+		.container {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 20px;
+			box-sizing: border-box;
+		}
+		.header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 20px;
+		}
+		.logo {
+			font-size: 32px;
+			font-weight: bold;
+		}
+		.btn {
+			display: inline-block;
+			padding: 10px 20px;
+			background-color: #fff;
+			color: #000;
+			border-radius: 5px;
+			text-decoration: none;
+			margin-left: 10px;
+		}
+		.btn:hover {
+			background-color: #6B39B4;
+			color: #fff;
+		}
+		.content {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			height: calc(100vh - 150px);
+		}
+.box {
+    border: 2px solid #fff;
+    border-radius: 10px;
+    margin: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    padding: 80px;
+    background-color: white;
+	opacity: 0.8;
+
+}
+
+
+.box p {
+  color: #000;
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  font-family: Arial, sans-serif;
+  font-weight: normal;
+  opacity: 0;
+  animation: fade-in 1s ease-in-out forwards;
+  text-shadow: 0 0 1px #000000; 
+  opacity: 1;
+
+
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  
+}
+h1 {
+     color: #ffffff;
+     text-shadow: 0 0 25px #000000; 
+ }
+
+
+	</style>
+</head>
+<body>
+	<div class="container">
+		<header class="header">
+			<h1 class="logo">PowerControl</h1>
+			<nav>
+                <a href="/src/html/home.html" class="btn">Home</a>
+				<a href="/src/html/login.html" class="btn">Login</a>
+				<a href="/src/html/cadastro.html" class="btn">Cadastro</a>
+			</nav>
+		</header>
+		<main class="content">
+			<div class="box">
+			<p>Bem-vindo ao nosso aplicativo de cálculo de energia elétrica! Nosso objetivo é ajudar você a entender melhor o seu consumo de energia e como isso impacta na sua conta de luz. Sabemos que é difícil controlar o consumo de cada eletrodoméstico e calcular quanto você vai gastar no final do mês. É aí que entramos!</p>
+			<p>Com nosso aplicativo, você pode cadastrar todos os seus eletrodomésticos e ver uma previsão de quanto vai gastar com base no consumo de cada um e no valor da tarifa da sua empresa de energia. Dessa forma, você pode tomar decisões mais conscientes sobre o uso da energia elétrica em sua casa e economizar na sua conta de luz.</p>
+            <p>Estamos comprometidos em fornecer a melhor experiência possível para nossos usuários e tornar a gestão da energia elétrica em sua casa mais fácil e eficiente. Não hesite em entrar em contato conosco se tiver alguma dúvida ou sugestão. Estamos sempre trabalhando para melhorar nosso aplicativo e torná-lo mais útil para você. Obrigado por escolher nosso aplicativo de cálculo de energia elétrica!</p>
+            </div>
+            </main>
+            </div>
+            </body>
+            </html>
