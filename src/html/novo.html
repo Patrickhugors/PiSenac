@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Adicionar Eletrodomésticos</title>
+	<link rel="stylesheet" href="/src/assets/css/style.css">
+</head>
+<body>
+	<div class="container">
+		<a  href="/src/html/eletrod.html" class="back-button">Voltar</a>
+		<h1 class="titulo">Adicionar <br> Eletrodomésticos</h1>
+        <form action="\src\php\novo.php" method="post">
+            <h2 class="subtitulo">Nome (kWh)</h2>
+            <input type="text" name="nome" placeholder="Nome">
+            <h2 class="subtitulo">Consumo (kWh)</h2>
+            <input type="text" name="consumo" placeholder="Consumo">
+            <h2 class="subtitulo">Uso diário (h)</h2>
+            <input type="text" name="horas" placeholder="Horas">
+            <h2 class="subtitulo">Quantidade</h2>
+            <input type="text" name="quantidade" placeholder="Quantidade">
+			<button type="submit">Salvar</button>
+		</form>
+	</div>
+</body>
+</html>

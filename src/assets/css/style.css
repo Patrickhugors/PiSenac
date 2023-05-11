@@ -81,14 +81,6 @@ button {
 	color: #58008E;
 }
 
-.profile-pic {
-	width: 150px;
-	height: 150px;
-	background-color: #ccc;
-	border-radius: 50%;
-	margin: 20px auto;
-}
-
 .chart {
 	width: 80%;
 	height: 200px;
@@ -249,7 +241,6 @@ button {
 	padding: 10px 20px;
 	text-align: left;
 	text-decoration: none;
-	width: 100%;
   }
 
    .menu-button::after {
@@ -289,6 +280,18 @@ button {
 	text-decoration: none;
 	font-size: 18px;
 	}
+
+	.new-eletr {
+		position: absolute;
+		top: 20px; 
+		right: 20px; 
+		color: #6B39B4;
+		border: none;
+		padding: 10px;
+		cursor: pointer;
+		text-decoration: none;
+		font-size: 18px;
+		}
 
 	.Sair {
 		position: absolute;
@@ -462,4 +465,19 @@ and (min-width: 1367px) {
 	  margin: 0 auto;
   }
   
+}
+.profile-pic {
+	width: 150px;
+	height: 150px;
+	background-color: #ccc;
+	border-radius: 50%;
+	margin: 20px auto;
+}
+
+.name {
+	font-size: 26px;
+}
+
+.consumption {
+	font-size: 13px;
 }

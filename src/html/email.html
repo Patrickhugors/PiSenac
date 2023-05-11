@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Alterar Email</title>
+    <link rel="stylesheet" href="/src/assets/css/style.css">
+  </head>
+  
+  <body>
+    <div class="container">
+	   <a href="/src/html/config.html" class="back-button">Voltar</a>
+      <h1 class="titulo">Alterar Email</h1>
+      <form action="/src/php/email.php" method="POST">
+        <div class="form-group">
+          <label for="novo_email" class="subtitulo">Novo Email</label>
+          <input type="email" id="novo_email" name="novo_email" class="input-text" required>
+        </div>
+        <div class="form-group">
+          <label for="senha" class="subtitulo">Senha</label>
+          <input type="password" id="senha" name="senha" class="input-text" required>
+        </div>
+        <button type="submit" class="button">Salvar</button>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+	<meta charset="UTF-8"/>
 	<title>Cadastro</title>
 	<link rel="stylesheet" href="/src/assets/css/style.css">
 </head>
 <body>
 	<div class="container">
 		<h1>Cadastre-se</h1>
-		<form>
-			<input type="text" name="name" placeholder="Nome">
-			<input type="email" name="email" placeholder="E-mail">
-			<input type="password" name="password" placeholder="Senha">
+		<form action="\src\php\cadastro.php" method="post">
+			<input type="text" name="nome" placeholder="Nome">
+			<input type="email" name="login" placeholder="E-mail">
+			<input type="password" name="senha" placeholder="Senha">
 			<button type="submit">Cadastrar</button>
-			<a href="/src/html/login.html" class="back-link">Voltar</a>
+			<a href="login.html" class="back-link">Voltar</a>
 		</form>
 	</div>
 </body>

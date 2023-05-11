@@ -1,38 +1,129 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-	<title>Editar Eletrodomésticos</title>
-	<link rel="stylesheet" href="/src/assets/css/style.css">
+  <meta charset="UTF-8"/>
+  <title>Editar Eletrodomésticos</title>
+  <link rel="stylesheet" href="/src/assets/css/style.css">
+  <style>
+    input.texto {
+      text-align: center;
+      background-color: #6B39B4;
+      color: white;
+    }
+	button.white-button {
+      background-color: white;
+      color: black;
+      border: 1px solid black;
+      outline: none;
+	  width: 100%;
+	  max-width: 300px;
+    }
+
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $.ajax({
+        url: "../php/eletrod.php",
+        method: "GET",
+        success: function(data) {
+          $(".dropdown").html(data);
+        }
+      });
+
+      $("#selectItem").change(function() {
+        var itemId = $(this).val();
+        if (itemId !== "") {
+          $.ajax({
+            url: "../php/buscar_dados.php",
+            method: "POST",
+            data: {id: itemId},
+            success: function(data) {
+              var dados = JSON.parse(data);
+              $("#consumo").val(dados.consumo);
+              $("#horas").val(dados.horas);
+              $("#quantidade").val(dados.quantidade);
+            }
+          });
+        } else {
+          $("#consumo").val("");
+          $("#horas").val("");
+          $("#quantidade").val("");
+        }
+      });
+
+      $("#salvar").click(function() {
+        var itemId = $("#selectItem").val();
+        var consumo = $("#consumo").val();
+        var horas = $("#horas").val();
+        var quantidade = $("#quantidade").val();
+
+        $.ajax({
+          url: "../php/atualizar_dados.php",
+          method: "POST",
+          data: {
+            id: itemId,
+            consumo: consumo,
+            horas: horas,
+            quantidade: quantidade
+          },
+          success: function(response) {
+            // Tratar a resposta do servidor, se necessário
+            alert("Dados atualizados com sucesso!");
+          }
+        });
+      });
+
+	  $("#excluir").click(function() {
+        var itemId = $("#selectItem").val();
+        if (itemId !== "") {
+          if (confirm("Tem certeza que deseja excluir este eletrodoméstico?")) {
+            $.ajax({
+              url: "../php/excluir_eletro.php",
+              method: "POST",
+              data: {id: itemId},
+              success: function() {
+                alert("Eletrodoméstico excluído com sucesso!");
+                location.reload();
+              }
+            });
+          }
+        }
+      });
+    });
+  </script>
 </head>
 <body>
-	<div class="container">
-		<a  href="/src/html/perfil.html" class="back-button">Voltar</a>
-		<h1 class="titulo">Editar <br> Eletrodomésticos</h1>
-		<select class="dropdown">
-			<option value="">Selecione um item</option>
-			<option value="1">Opção 1</option>
-			<option value="2">Opção 2</option>
-			<option value="3">Opção 3</option>
-		</select>
-		<h2 class="subtitulo">Consumo (kWh)</h2>
-		<div class="retangulo">
-			<p class="texto">Valor1</p>
-		</div>
-		<h2 class="subtitulo">Uso Por Mês (h)</h2>
-		<div class="retangulo">
-			<p class="texto">Valor2</p>
-		</div>
-		<h2 class="subtitulo">Quantidade</h2>
-		<div class="retangulo">
-			<p class="texto">Valor3</p>
-		</div>
-		<div class="buttons profile-buttons">
-			<a href="/src/html/perfil.html" class="btn"><i class="fa fa-perfil"></i></a>
-			<a href="/src/html/gastos.html" class="btn"><i class="fa fa-gastos"></i></a>
-			<a href="/src/html/calendario.html" class="btn"><i class="fa fa-calendario"></i></a>
-			<a href="/src/html/previsao.html" class="btn"><i class="fa fa-previsao"></i></a>
-			<a href="/src/html/eletrod.html" class="btnActive"><i class="fa fa-eletro"></i></a>
-		  </div>		  
-	</div>
+  <div class="container">
+    <a href="/src/html/perfil.html" class="back-button">Voltar</a>
+    <a href="/src/html/novo.html" class="new-eletr">Novo</a>
+    <h1 class="titulo">Editar <br> Eletrodomésticos</h1>
+    <select class="dropdown" id="selectItem">
+      <option value="">Selecione um item</option>
+    </select>          
+    <h2 class="subtitulo">Consumo (kWh)</h2>
+    <div class="retangulo consumo">
+      <input type="text" class="texto" id="consumo">
+    </div>
+    <h2 class="subtitulo">Uso Por Mês (h)</h2>
+    <div class="retangulo horas">
+      <input type="text" class="texto" id="horas">
+    </div>
+    <h2 class="subtitulo">Quantidade</h2>
+    <div class="retangulo quantidade">
+      <input type="text" class="texto" id="quantidade">
+    </div>
+	<br>
+	<br>
+	<button id="salvar" class="white-button">Salvar</button>
+    <button id="excluir" class="white-button">Excluir Eletrodoméstico</button>
+    <div class="buttons profile-buttons">
+      <a href="/src/html/perfil.html" class="btn"><i class="fa fa-perfil"></i></a>
+      <a href="/src/html/gastos.html" class="btn"><i class="fa fa-gastos"></i></a>
+      <a href="/src/html/calendario.html" class="btn"><i class="fa fa-calendario"></i></a>
+      <a href="/src/html/previsao.html" class="btn"><i class="fa fa-previsao"></i></a>
+      <a href="/src/html/eletrod.html" class="btnActive"><i class="fa fa-eletro"></i></a>
+    </div>        
+  </div>
 </body>
 </html>

@@ -1,23 +1,188 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-	<title>Calendário</title>
-	<link rel="stylesheet" href="/src/assets/css/style.css">
+  <meta charset="UTF-8"/>
+  <title>Calendário</title>
+  <link rel="stylesheet" href="/src/assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
+  <style>
+    .event-list-container {
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+      width: 30%;
+      margin: 0 auto;
+      min-height: 100px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .event-list {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+    }
+
+    .event-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 5px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+      position: relative;
+      margin-left: 20px;
+    }
+
+    .event-list li::before {
+      content: "";
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #58008E;
+      position: absolute;
+      top: 50%;
+      left: -15px;
+      transform: translateY(-50%);
+    }
+
+    .event-list li:nth-child(even)::before {
+      background-color: #6B39B4;
+    }
+
+    .event-info {
+      display: flex;
+      align-items: baseline;
+      flex-grow: 1;
+    }
+
+    .event-title {
+      font-size: 16px;
+      margin-right: 10px;
+    }
+
+    .event-date {
+      font-size: 12px;
+    }
+
+    .delete-event-button {
+      background: none;
+      border: none;
+      color: red;
+      cursor: pointer;
+      min-height: 1px;
+    }
+
+    .event-actions {
+      display: flex;
+      align-items: center;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+  <script src="/calendar/moment-with-locales.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      moment.locale('pt-br');
+
+      $('.calendar').fullCalendar({
+        locale: 'pt-br',
+      });
+
+      $('.add-event-button').click(function() {
+        var eventTitle = prompt('Digite o título do evento:');
+        if (eventTitle) {
+          var eventDate = prompt('Digite a data do evento (DD/MM/YYYY):');
+          if (eventDate) {
+            var eventMoment = moment(eventDate, 'DD/MM/YYYY');
+            if (eventMoment.isValid()) {
+              var eventData = {
+                title: eventTitle,
+                start: eventMoment.format('YYYY-MM-DD')
+              };
+              $('.calendar').fullCalendar('renderEvent', eventData, true);
+
+              // Enviar dados do evento para o arquivo PHP
+              $.post('../php/salvar_evento.php', {
+titulo: eventTitle,
+data: eventMoment.format('YYYY-MM-DD')
+}, function(data) {
+console.log(data); // Exibir resposta do servidor no console
+if (data.success) {
+adicionarEventoLista(eventTitle, eventMoment.format('DD/MM/YYYY'));
+}
+});
+} else {
+alert('Data inválida. Por favor, digite no formato DD/MM/YYYY.');
+}
+}
+}
+});  // Função para adicionar um evento à lista
+  function adicionarEventoLista(titulo, data) {
+    var listItem = '<li><div class="event-info"><span class="event-title">' + titulo + '</span><span class="event-date">' + data + '</span></div><div class="event-actions"><button class="delete-event-button">Excluir</button></div></li>';
+    $('.event-list').append(listItem);
+  }
+
+  // Carregar os eventos do banco de dados e exibir na lista
+  $.get('../php/carregar_eventos.php', function(data) {
+    if (data.success) {
+      var eventos = data.eventos;
+      for (var i = 0; i < eventos.length; i++) {
+        adicionarEventoLista(eventos[i].title, eventos[i].start);
+      }
+    }
+  });
+
+  // Lidar com o clique no botão de exclusão
+  $(document).on('click', '.delete-event-button', function() {
+    var listItem = $(this).closest('li');
+    var eventTitle = listItem.find('.event-title').text();
+    var eventDate = listItem.find('.event-date').text();
+
+    var confirmDelete = confirm("Tem certeza que deseja excluir o evento?");
+    if (confirmDelete) {
+      // Remova o evento do calendário
+      $('.calendar').fullCalendar('removeEvents', function(event) {
+        return event.title === eventTitle && moment(event.start).format('DD/MM/YYYY') === eventDate;
+      });
+
+      // Remova o evento do banco de dados
+      $.post('../php/excluir_evento.php', {
+        titulo: eventTitle,
+        data: eventDate
+      }, function(data) {
+        console.log(data); // Exibir resposta do servidor no console
+        if (data.success) {
+          listItem.remove();
+        }
+      });
+    }
+  });
+});
+</script>
 </head>
 <body>
-	<div class="container">
-		<a  href="/src/html/perfil.html" class="back-button">Voltar</a>
-		<h1 class="title">Calendário</h1>
-		<div class="calendar-container">
-			<div class="calendar"></div>
-		</div>
-        <div class="buttons profile-buttons">
-			<a href="/src/html/perfil.html" class="btn"><i class="fa fa-perfil"></i></a>
-			<a href="/src/html/gastos.html" class="btn"><i class="fa fa-gastos"></i></a>
-			<a href="/src/html/calendario.html" class="btnActive"><i class="fa fa-calendario"></i></a>
-			<a href="/src/html/previsao.html" class="btn"><i class="fa fa-previsao"></i></a>
-			<a href="/src/html/eletrod.html" class="btn"><i class="fa fa-eletro"></i></a>
-		</div>
+  <div class="container">
+    <a href="/src/html/perfil.html" class="back-button">Voltar</a>
+    <h1 class="title">Calendário</h1>
+    <div class="calendar-container">
+      <div class="calendar"></div>
+    </div>
+    <button class="add-event-button">Adicionar Evento</button>
+    <div class="event-list-container">
+      <h2>Eventos</h2>
+      <ul class="event-list" id="event-list"></ul>
+    </div>
+    <div class="buttons profile-buttons">
+      <a href="/src/html/perfil.html" class="btn"><i class="fa fa-perfil"></i></a>
+      <a href="/src/html/gastos.html" class="btn"><i class="fa fa-gastos"></i></a>
+      <a href="/src/html/calendario.html" class="btnActive"><i class="fa fa-calendario"></i></a>
+      <a href="/src/html/previsao.html" class="btn"><i class="fa fa-previsao"></i></a>
+      <a href="/src/html/eletrod.html" class="btn"><i class="fa fa-eletro"></i></a>
 	</div>
-</body>
-</html>
+	
+	  </div>
+	</body>
+	</html>

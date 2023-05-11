@@ -1,35 +1,103 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-	<title>Previsão de Gastos</title>
-	<link rel="stylesheet" href="/src/assets/css/style.css">
+  <meta charset="UTF-8"/>
+  <title>Previsão de Gastos</title>
+  <link rel="stylesheet" href="/src/assets/css/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .list-container {
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+      width: 30%;
+      margin: 0 auto;
+      min-height: 300px;
+    }
+
+    .list {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+    }
+
+    .list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 5px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+      position: relative;
+      margin-left: 20px;
+    }
+
+    .list li::before {
+      content: "";
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #58008E;
+      position: absolute;
+      top: 50%;
+      left: -15px;
+      transform: translateY(-50%);
+    }
+
+    .list li:nth-child(even)::before {
+      background-color: #6B39B4;
+    }
+
+    .item-name {
+      font-size: 26px;
+    }
+
+    .item-usage {
+      font-size: 12px;
+    }
+  </style>
+  <script>
+    $(document).ready(function() {
+      var months = [
+        "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+        "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+      ];
+
+      var currentMonth = months[new Date().getMonth()];
+      $(".month").text(currentMonth);
+
+      $.ajax({
+        url: "/src/php/calculo_gastos.php",
+        method: "GET",
+        success: function(data) {
+          $(".list").html(data);
+        }
+      });
+    });
+  </script>
 </head>
 <body>
-	<div class="container">
-        <a  href="/src/html/perfil.html" class="back-button">Voltar</a>
-		<h1 class="title">Previsão de Gastos</h1>
-		<div class="circle-container">
-			<div class="circle">
-				<span class="month">MES</span>
-			</div>
-			<h2 class="subtitle">Eletrodomésticos</h2>
-		</div>
-        <div class="list-container">
-			<ul class="list">
-				<li>Item 1</li>
-				<li>Item 2</li>
-				<li>Item 3</li>
-				<li>Item 4</li>
-				<li>Item 5</li>
-			</ul>
-		</div>
-        <div class="buttons profile-buttons">
-			<a href="/src/html/perfil.html" class="btn"><i class="fa fa-perfil"></i></a>
-			<a href="/src/html/gastos.html" class="btn"><i class="fa fa-gastos"></i></a>
-			<a href="/src/html/calendario.html" class="btn"><i class="fa fa-calendario"></i></a>
-			<a href="/src/html/previsao.html" class="btnActive"><i class="fa fa-previsao"></i></a>
-			<a href="/src/html/eletrod.html" class="btn"><i class="fa fa-eletro"></i></a>
-		</div>
-	</div>
+  <div class="container">
+    <a href="/src/html/perfil.html" class="back-button">Voltar</a>
+    <h1 class="title">Previsão de Gastos</h1>
+    <div class="circle-container">
+      <div class="circle">
+        <span class="month">MES</span>
+      </div>
+      <h2 class="subtitle">Eletrodomésticos</h2>
+    </div>
+    <div class="list-container">
+      <ul class="list">
+      </ul>
+    </div>
+    <div class="buttons profile-buttons">
+      <a href="/src/html/perfil.html" class="btn"><i class="fa fa-perfil"></i></a>
+      <a href="/src/html/gastos.html" class="btn"><i class="fa fa-gastos"></i></a>
+      <a href="/src/html/calendario.html" class="btn"><i class="fa fa-calendario"></i></a>
+      <a href="/src/html/previsao.html" class="btnActive"><i class="fa fa-previsao"></i></a>
+      <a href="/src/html/eletrod.html" class="btn"><i class="fa fa-eletro"></i></a>
+    </div>
+  </div>
 </body>
 </html>

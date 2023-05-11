@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Alterar Senha</title>
+    <link rel="stylesheet" href="/src/assets/css/style.css">
+  </head>
+  
+  <body>
+    <div class="container">
+      <h1 class="titulo">Alterar Senha</h1>
+      <a href="/src/html/config.html" class="back-button">Voltar</a>     
+      <form action="/src/php/senha.php" method="POST">
+        <div class="form-group">
+          <label for="senha_atual" class="subtitulo">Senha Atual</label>
+          <input type="password" id="senha_atual" name="senha_atual" class="input-text" required>
+        </div>
+        <div class="form-group">
+          <label for="nova_senha" class="subtitulo">Nova Senha</label>
+          <input type="password" id="nova_senha" name="nova_senha" class="input-text" required>
+        </div>
+        <button type="submit" class="button">Salvar</button>
+      </form>
+    </div>
+  </body>
+</html>

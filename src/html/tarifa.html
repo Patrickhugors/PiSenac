@@ -1,22 +1,37 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
+    <meta charset="UTF-8"/>
     <title>Ajustar Tarifa</title>
     <link rel="stylesheet" href="/src/assets/css/style.css">
   </head>
-  
-<body>
-	<div class="container">
-        <a  href="/src/html/perfil.html" class="back-button">Voltar</a>
-		<h1 class="titulo">Ajustar Tarifa</h1>
-		<h2 class="subtitulo">Companhia</h2>
-		<div class="retangulo">
-			<p class="texto">Valor4</p>
-		</div>
-		<h2 class="subtitulo">Tarifa (R$/kWh)</h2>
-		<div class="retangulo">
-			<p class="texto">Valor5</p>
-		</div>
-	</div>
-</body>
-</html>
+  <body>
+    <div class="container">
+      <a href="/src/html/perfil.html" class="back-button">Voltar</a>
+	    <a href="/src/html/config.html" class="back-button">Voltar</a>     
+       <h1 class="titulo">Ajustar Tarifa</h1>
+       <form action="/src/php/tarifa.php" method="POST" onsubmit="return validarFormulario()">
+        <h2 class="subtitulo">Companhia</h2>
+        <input type="text" id="companhia" name="companhia" required>
+        <h2 class="subtitulo">Tarifa (R$/kWh)</h2>
+        <input type="text" id="tarifa" name="tarifa" required>
+        <button type="submit">Salvar</button>
+    </form>
+    
+    <script>
+        function validarFormulario() {
+            var tarifaInput = document.getElementById("tarifa");
+            var tarifaValue = tarifaInput.value;
+            if (!isNumeric(tarifaValue)) {
+                alert("Por favor, insira um valor numérico válido para a tarifa.");
+                return false; 
+            }
+            return true; 
+        }
+        function isNumeric(value) {
+            return /^-?\d+(?:[.,]\d*)?$/.test(value);
+        }
+    </script>    
+    </div>
+  </body>
+  </html>
