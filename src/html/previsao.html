@@ -14,7 +14,6 @@
       margin: 0 auto;
       min-height: 300px;
     }
-
     .list {
       margin: 0;
       padding: 0;
@@ -56,6 +55,27 @@
     .item-usage {
       font-size: 12px;
     }
+    .total-container {
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+      width: 30%;
+      margin: 0 auto;
+      min-height: 20px;
+      display: flex;
+      justify-content: space-between;
+      background-color: #f0f0f0;
+}
+
+.total-label {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.total-value {
+  font-size: 18px;
+}
+
   </style>
   <script>
     $(document).ready(function() {
@@ -72,6 +92,7 @@
         method: "GET",
         success: function(data) {
           $(".list").html(data);
+          $("#total-value").text(totalValue);
         }
       });
     });
@@ -91,6 +112,11 @@
       <ul class="list">
       </ul>
     </div>
+    <div class="total-container">
+      <span class="total-label">Total</span>
+      <span id="total-value" class="total-value"></span>
+    </div>
+    
     <div class="buttons profile-buttons">
       <a href="/src/html/perfil.html" class="btn"><i class="fa fa-perfil"></i></a>
       <a href="/src/html/gastos.html" class="btn"><i class="fa fa-gastos"></i></a>

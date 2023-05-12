@@ -54,19 +54,28 @@ if ($mysqli->connect_error) {
             // Incrementa o gasto ao total
             $totalGastos += $gastoEletrodomestico;
 
-            // Exibe o nome e o gasto do eletrodoméstico atual
-            echo "<li>
-                    <span class='item-name'>$nome</span>
-                    <span class='item-usage'>R$" . number_format($gastoEletrodomestico, 2, ',', '') . "</span>
-                  </li>";
+// Exibe o nome e o gasto do eletrodoméstico atual
+$totalItems = floor($gastoEletrodomestico / 10);
+$totalItemsDecimal = $totalItems / 100;
+$totalItemsFormatados = number_format($totalItemsDecimal, 2, ',', '');
+echo "<li>
+        <span class='item-name'>$nome</span>
+        <span class='item-usage'>R$" . $totalItemsFormatados . "</span>
+      </li>";
+
         }
     }
-    // Exibe o total de gastos no mês
-    echo "<li class='total'>
-            <span class='item-name'>Total</span>
-            <span class='item-usage'>R$" . number_format($totalGastos, 2, ',', '') . "</span>
-          </li>";
-
+            // Exibe o total de gastos no mês sem os 3 últimos dígitos com uma vírgula após o segundo caractere
+            $totalFormatado = floor($totalGastos / 10);
+            $totalExibido = substr($totalFormatado, 0, 2) . ',' . substr($totalFormatado, 2);
+          //   echo "<li class='total'>
+          //   <span class='item-name'>Total</span>
+          //   <span class='item-usage'>R$" . $totalExibido . "</span>
+          // </li>";
+          
+    // Store the total value in a JavaScript variable
+    echo "<script>var totalValue = '$totalExibido';</script>";
+         
     $mysqli->close();
 }
 ?>
