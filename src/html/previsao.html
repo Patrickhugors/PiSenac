@@ -26,7 +26,8 @@
       align-items: baseline;
       margin-bottom: 5px;
       border-bottom: 1px solid #ccc;
-      padding-bottom: 5px;
+      padding-bottom: 20px;
+      padding-top: 10px;
       position: relative;
       margin-left: 20px;
     }
@@ -34,13 +35,13 @@
     .list li::before {
       content: "";
       display: block;
-      width: 10px;
-      height: 10px;
+      width: 15px;
+      height: 15px;
       border-radius: 50%;
       background-color: #58008E;
       position: absolute;
       top: 50%;
-      left: -15px;
+      left: -20px;
       transform: translateY(-50%);
     }
 
@@ -53,7 +54,7 @@
     }
 
     .item-usage {
-      font-size: 12px;
+      font-size: 16px;
     }
     .total-container {
       border: 1px solid #ccc;
@@ -75,6 +76,40 @@
 .total-value {
   font-size: 18px;
 }
+.circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black; 
+}
+.circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .month {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+  }
 
   </style>
   <script>
@@ -101,7 +136,7 @@
 <body>
   <div class="container">
     <a href="/src/html/perfil.html" class="back-button">Voltar</a>
-    <h1 class="title">Previsão de Gastos</h1>
+    <h1 class="title">Previsão do gasto mensal</h1>
     <div class="circle-container">
       <div class="circle">
         <span class="month">MES</span>

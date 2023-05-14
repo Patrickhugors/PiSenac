@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Editar Conta de Luz</title>
+    <style>
+
+input[type="number"]{
+  width: 200px;
+  padding: 5px;
+  font-size: 16px;
+  margin-top: 10px;
+  text-align: center;
+}
+select {
+  width: 210px;
+  padding: 5px;
+  font-size: 16px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+input[type="submit"] {
+  display: block;
+  width: 150px;
+  margin: 0 auto;
+  padding: 10px;
+  margin-top: 20px;
+  background-color: #6B39B4;
+  color: white;
+  border: none;
+  cursor: pointer;
+  left: 50%; /* Alinhar horizontalmente ao centro */
+  top: 50%; /* Alinhar verticalmente ao centro */
+  border-radius: 5px; 
+
+}
+
+
+    </style>
+    <link rel="stylesheet" href="/src/assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <a href="/src/html/config.html" class="back-button">Voltar</a>     
+        <h1>Editar Conta de Luz</h1>
+        <form method="POST" action="\src\php\contas.php">
+            <label for="valor" class="valor-label">Valor:</label>
+            <br>
+            <input type="number" name="valor" id="valor" step="0.01" required pattern="^\d+(,\d{1,2})?$">
+            <br>
+            <br>
+            <label for="mes">Mês:</label>
+            <br>
+            <select name="mes" id="mes" required>
+                <option value="">Selecione o mês</option>
+                <option value="01">Janeiro</option>
+                <option value="02">Fevereiro</option>
+                <option value="03">Março</option>
+                <option value="04">Abril</option>
+                <option value="05">Maio</option>
+                <option value="06">Junho</option>
+                <option value="07">Julho</option>
+                <option value="08">Agosto</option>
+                <option value="09">Setembro</option>
+                <option value="10">Outubro</option>
+                <option value="11">Novembro</option>
+                <option value="12">Dezembro</option>
+            </select><br><br>
+            <input type="submit" value="Salvar">
+        </form>
+
+        <form method="POST" action="\src\php\remover_contas.php">
+            <input type="submit" value="Remover Contas">
+        </form>
+    </div>
+</body>
+</html>

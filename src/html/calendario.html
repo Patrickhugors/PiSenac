@@ -110,6 +110,7 @@ titulo: eventTitle,
 data: eventMoment.format('YYYY-MM-DD')
 }, function(data) {
 console.log(data); // Exibir resposta do servidor no console
+window.location.href="/src/html/calendario.html";
 if (data.success) {
 adicionarEventoLista(eventTitle, eventMoment.format('DD/MM/YYYY'));
 }
@@ -158,6 +159,7 @@ alert('Data inválida. Por favor, digite no formato DD/MM/YYYY.');
           listItem.remove();
         }
       });
+      window.location.href="/src/html/calendario.html";
     }
   });
 });

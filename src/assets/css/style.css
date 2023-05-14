@@ -113,23 +113,19 @@ button {
 .fa {
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	height: 100%;
+	justify-content: center;	
 }
 
 .title {
 	text-align: center;
 }
 
-.chart-container {
-	margin: 20px 0;
-}
 
 .list-container {
 	background-color: #fff;
 	padding: 20px;
 	border-radius: 5px;
-	max-height: 150px;
+	max-height: 300px;
 	overflow-y: auto;
 }
 
@@ -143,6 +139,7 @@ button {
 .list li {
 	padding: 10px 0;
 	border-bottom: 1px solid #f5f5f5;
+	height: 15px;
 }
 
 .calendar-container {
@@ -156,24 +153,6 @@ button {
 	background-color: #f5f5f5;
 	height: 400px;
 	width: 400px;
-}
-
-.circle-container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin: 20px 0;
-}
-
-.circle {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: #f5f5f5;
-	height: 100px;
-	width: 100px;
-	border-radius: 50%;
-	margin-bottom: 20px;
 }
 
 .month {
@@ -466,13 +445,6 @@ and (min-width: 1367px) {
   }
   
 }
-.profile-pic {
-	width: 150px;
-	height: 150px;
-	background-color: #ccc;
-	border-radius: 50%;
-	margin: 20px auto;
-}
 
 .name {
 	font-size: 26px;
@@ -481,3 +453,52 @@ and (min-width: 1367px) {
 .consumption {
 	font-size: 13px;
 }
+
+.chart-container {
+	border: 1px solid #ccc;
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 20px;
+	margin-top: 40px;
+  }
+  
+  .circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-left: auto;
+    margin-right: auto;
+}
+.custom-file-upload {
+    background-color: #6B39B4;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+	border-radius: 20px; 
+
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+
+  .custom-button {
+    background-color: #6B39B4;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+	border-radius: 20px; 
+  }
+  

@@ -1,33 +1,109 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-	<meta charset="UTF-8"/>
-	<title>Gastos</title>
-	<link rel="stylesheet" href="/src/assets/css/style.css">
+    <meta charset="UTF-8"/>
+    <title>Gastos</title>
+    <link rel="stylesheet" href="/src/assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Fazer a requisição AJAX para buscar as contas
+            $.ajax({
+                url: "/src/php/buscar_contas.php",
+                type: "GET",
+                dataType: "json",
+                success: function(response) {
+                    if (response.success) {
+                        var contas = response.contas;
+                        var contasList = $("#contas-list");
+                        $.each(contas, function(index, conta) {
+                            var li = $("<li>").text(conta);
+                            contasList.append(li);
+                        });
+                    }
+                },
+                error: function() {
+                    console.log("Erro ao buscar as contas.");
+                }
+            });
+        });
+    </script>
+    <script>
+        function buscarDadosGrafico() {
+            $.ajax({
+                url: "/src/php/consultagrafico.php",
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    atualizarGrafico(data.labels, data.valores);
+                },
+                error: function() {
+                    console.log('Erro ao buscar os dados do gráfico.');
+                }
+            });
+        }
+    
+        function atualizarGrafico(labels, valores) {
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Conta de luz - R$',
+                        data: valores,
+                        backgroundColor: '#6B39B4',
+                        barThickness: 25
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                            callback: function (value, index, values) {
+                            return value.toFixed(2);
+                            }
+                         }
+                        }
+                    }
+                }
+            });
+        }
+    
+        $(document).ready(function() {
+            buscarDadosGrafico();
+        });
+    </script>
+    <style>
+  .chart-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+    </style>
 </head>
 <body>
-	<div class="container">
-		<a  href="/src/html/perfil.html" class="back-button">Voltar</a>
-		<h1 class="title">Gastos</h1>
-		<div class="chart-container">
-			<div class="chart"></div>
-		</div>
-		<div class="list-container">
-			<ul class="list">
-				<li>Item 1</li>
-				<li>Item 2</li>
-				<li>Item 3</li>
-				<li>Item 4</li>
-				<li>Item 5</li>
-			</ul>
-		</div>
+    <div class="container">
+        <a href="/src/html/perfil.html" class="back-button">Voltar</a>
+        <h1 class="title">Gastos</h1>
+        <div class="chart-container">
+            <canvas id="myChart"></canvas>
+        </div>
+        <div class="list-container">
+            <ul class="list" id="contas-list"></ul>
+        </div>
         <div class="buttons profile-buttons">
-			<a href="/src/html/perfil.html" class="btn"><i class="fa fa-perfil"></i></a>
-			<a href="/src/html/gastos.html" class="btnActive"><i class="fa fa-gastos"></i></a>
-			<a href="/src/html/calendario.html" class="btn"><i class="fa fa-calendario"></i></a>
-			<a href="/src/html/previsao.html" class="btn"><i class="fa fa-previsao"></i></a>
-			<a href="/src/html/eletrod.html" class="btn"><i class="fa fa-eletro"></i></a>
-		</div>
-	</div>
+            <a href="/src/html/perfil.html" class="btn"><i class="fa fa-perfil"></i></a>
+            <a href="/src/html/gastos.html" class="btnActive"><i class="fa fa-gastos"></i></a>
+            <a href="/src/html/calendario.html" class="btn"><i class="fa fa-calendario"></i></a>
+            <a href="/src/html/previsao.html" class="btn"><i class="fa fa-previsao"></i></a>
+            <a href="/src/html/eletrod.html" class="btn"><i class="fa fa-eletro"></i></a>
+        </div>
+    </div>
 </body>
 </html>
