@@ -65,16 +65,18 @@ echo "<li>
 
         }
     }
-            // Exibe o total de gastos no mês sem os 3 últimos dígitos com uma vírgula após o segundo caractere
             $totalFormatado = floor($totalGastos / 10);
-            $totalExibido = substr($totalFormatado, 0, 2) . ',' . substr($totalFormatado, 2);
+            $valorDecimal = $totalFormatado / 100;
+            $valortotal = number_format($valorDecimal, 2, ',', '.');
+
+
           //   echo "<li class='total'>
           //   <span class='item-name'>Total</span>
           //   <span class='item-usage'>R$" . $totalExibido . "</span>
           // </li>";
           
     // Store the total value in a JavaScript variable
-    echo "<script>var totalValue = '$totalExibido';</script>";
+    echo "<script>var totalValue = 'R$ ' +'$valortotal';</script>";
          
     $mysqli->close();
 }
