@@ -10,12 +10,12 @@ Pré-requisitos
 
 Instalação
 
-• Faça o download do projeto.
-• Copie a pasta 'src' e cole dentro da pasta 'htdocs' do XAMPP (normalmente localizada em C:\xampp\htdocs).
-• Copie a pasta 'clientes', que está dentro dos arquivos do projeto (localizada em C:\xampp\htdocs\src\bd), e cole dentro da pasta 'data' do XAMPP (normalmente localizada em C:\xampp\mysql\data).
-• Inicie o XAMPP Control Panel e ligue os módulos Apache e MySQL.
-• Abra o navegador web e acesse o link da página inicial: http://localhost/src/html/home.html.
-• Certifique-se de ter o XAMPP instalado corretamente e de que o caminho dos diretórios mencionados esteja de acordo com a sua instalação específica do XAMPP.
+• Faça o download do projeto.                                                                                                                                
+• Copie a pasta 'src' e cole dentro da pasta 'htdocs' do XAMPP (normalmente localizada em C:\xampp\htdocs).                                                                                                       
+• Copie a pasta 'clientes', que está dentro dos arquivos do projeto (localizada em C:\xampp\htdocs\src\bd), e cole dentro da pasta 'data' do XAMPP (normalmente localizada em C:\xampp\mysql\data).               
+• Inicie o XAMPP Control Panel e ligue os módulos Apache e MySQL.                                                                                                                                        
+• Abra o navegador web e acesse o link da página inicial: http://localhost/src/html/home.html.                                                                                                                     
+• Certifique-se de ter o XAMPP instalado corretamente e de que o caminho dos diretórios mencionados esteja de acordo com a sua instalação específica do XAMPP.                                              
 
 Autores
 
