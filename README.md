@@ -5,7 +5,7 @@ Universitário SENAC, sob orientação dos Professores João Carlos Lima e Julio
 
 Pré-requisitos
 
-• XAMPP
+• XAMPP                                                                                                                                                                             
 • Navegador web (como Google Chrome, Mozilla Firefox, etc.)
 
 Instalação
