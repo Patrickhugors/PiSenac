@@ -20,8 +20,11 @@ Instalação
 Autores
 
 Patrick Hugo Rodrigues Da Silva
+
 Tiago Nunes Do Carmo
+
 Victor Hugo Januzzi
+
 Vinicius Miguel Do Nascimento Albuquerque
 
 Link de funcionamento do projeto no youtube:
