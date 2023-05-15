@@ -19,14 +19,13 @@ Instalação
 
 Autores
 
-Clarissa Kogik Gottfried
-Celso Frederico Gauz Alves
-Cezar Navoscone Roman
-Cristiano Soeiro Da Rosa
-Patrick Hugo Rodrigues Da Silva
-Tiago Nunes Do Carmo
-Victor Hugo Januzzi
-Vinicius Miguel Do Nascimento Albuquerque                                                                                                                             
-
+Clarissa Kogik Gottfried                                                                                                                                                   
+Celso Frederico Gauz Alves                                                                                                                                                 
+Cezar Navoscone Roman                                                                                                                                                 
+Cristiano Soeiro Da Rosa                                                                                                                                                 
+Patrick Hugo Rodrigues Da Silva                                                                                                                                                 
+Tiago Nunes Do Carmo                                                                                                                                                 
+Victor Hugo Januzzi                                                                                                                                                 
+Vinicius Miguel Do Nascimento Albuquerque                                                                                                                                                                         
 Link de funcionamento do projeto no youtube:
 https://youtu.be/2dXbdPK5Ybk
